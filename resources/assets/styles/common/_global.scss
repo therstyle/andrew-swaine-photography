@@ -1,4 +1,19 @@
+html {
+  font-size: 62.5%;
+}
+
 body {
   background: var(--black);
   color: var(--white);
+  font-family: var(--main-font);
+  font-size: var(--font-size);
+}
+
+#app {
+  padding: 1rem;
+}
+
+.wrapper {
+  max-width: var(--max-width);
+  margin: auto;
 }
