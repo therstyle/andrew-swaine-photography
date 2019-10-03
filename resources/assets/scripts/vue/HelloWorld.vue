@@ -1,6 +1,6 @@
 <template>
   <div class="hello-world__message">
-    {{message}}
+    {{message}} !!!
   </div>
 </template>
 
