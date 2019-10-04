@@ -8,7 +8,6 @@ export default {
       components: {
         Home,
       },
-      props: ['message'],
       created() {
         this.loadData('https://localhost:3000/wp-json/wp/v2/pages/6');
       },
@@ -21,7 +20,6 @@ export default {
               console.log(data);
             }
           )
-          console.log(`load ${url}`);
         }
       }
     });
