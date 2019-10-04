@@ -9,6 +9,21 @@ export default {
         Home,
       },
       props: ['message'],
+      created() {
+        this.loadData('https://localhost:3000/wp-json/wp/v2/pages/6');
+      },
+      methods: {
+        loadData(url) {
+          fetch(url).
+          then(response => response.json()).
+          then(
+            data => {
+              console.log(data);
+            }
+          )
+          console.log(`load ${url}`);
+        }
+      }
     });
   }
 };

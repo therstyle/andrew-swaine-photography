@@ -6,9 +6,7 @@
   @php do_action('get_header') @endphp
   <div class="wrapper" role="document">
     <div id="app">
-      <home 
-        message="Hello world!"
-      ></home>
+      <home></home>
     </div>
   </div>
   @php do_action('get_footer') @endphp
