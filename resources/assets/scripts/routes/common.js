@@ -1,17 +1,14 @@
 import Vue from 'vue';
-import HelloWorld from '../vue/HelloWorld.vue';
+import Home from '../vue/Home.vue';
 
 export default {
   init() {
     new Vue({
       el: '#app',
       components: {
-        HelloWorld,
+        Home,
       },
       props: ['message'],
     });
-  },
-  finalize() {
-    // JavaScript to be fired on all pages, after page specific JS is fired
-  },
+  }
 };

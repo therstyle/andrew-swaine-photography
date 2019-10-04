@@ -4,9 +4,11 @@
 
 <body @php body_class() @endphp>
   @php do_action('get_header') @endphp
-  <div class="wrap container" role="document">
+  <div class="wrapper" role="document">
     <div id="app">
-      <hello-world message="Hello world!"></hello-world>
+      <home 
+        message="Hello world!"
+      ></home>
     </div>
   </div>
   @php do_action('get_footer') @endphp
