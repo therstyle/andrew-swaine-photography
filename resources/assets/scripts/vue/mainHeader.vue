@@ -10,6 +10,7 @@ export default {
   name: 'main-header',
   data() {
     return {
+      url: `${wp.url}/wp-json/as/v1/global`,
       logo: {
         url: '',
         alt: ''
@@ -17,7 +18,7 @@ export default {
     }
   },
   created() {
-    this.loadData(`${wp.url}/wp-json/as/v1/global`);
+    this.loadData(this.url);
   },
   methods: {
     loadData(url) {
