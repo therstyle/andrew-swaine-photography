@@ -131,6 +131,7 @@ add_action('after_setup_theme', function () {
     });
 });
 
+// WP localize Script
 add_action('wp_enqueue_scripts', function () {
     wp_enqueue_script('sage/main.js', asset_path('scripts/main.js'), ['jquery'], null, true);
     $ajax_params = [
@@ -139,3 +140,24 @@ add_action('wp_enqueue_scripts', function () {
 
     wp_localize_script('sage/main.js', 'wp', $ajax_params);
 }, 100);
+
+// ACF options page
+if(function_exists('acf_add_options_page')) {
+    acf_add_options_page();
+}
+
+// REST API Endpoints
+function get_global_options() {
+    $data = [
+        'logo' => get_field('logo', 'option')
+    ];
+
+    return $data;
+}
+
+add_action('rest_api_init', function() {
+    register_rest_route('as/v1', 'global', [
+        'methods' => 'GET',
+        'callback' => __NAMESPACE__ .'\\get_global_options'
+    ]);
+});

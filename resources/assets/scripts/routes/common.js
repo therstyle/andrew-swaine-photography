@@ -1,5 +1,6 @@
 import Vue from 'vue';
-import Home from '../vue/Home.vue';
+import Home from '../vue/home.vue';
+import MainHeader from '../vue/mainHeader.vue';
 
 export default {
   init() {
@@ -7,20 +8,7 @@ export default {
       el: '#app',
       components: {
         Home,
-      },
-      created() {
-        this.loadData('https://localhost:3000/wp-json/wp/v2/pages/6');
-      },
-      methods: {
-        loadData(url) {
-          fetch(url).
-          then(response => response.json()).
-          then(
-            data => {
-              console.log(data);
-            }
-          )
-        }
+        MainHeader
       }
     });
   }

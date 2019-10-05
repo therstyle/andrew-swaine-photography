@@ -6,6 +6,7 @@
   @php do_action('get_header') @endphp
   <div class="wrapper" role="document">
     <div id="app">
+      <main-header></main-header>
       <home></home>
     </div>
   </div>
