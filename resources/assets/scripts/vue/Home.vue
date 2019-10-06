@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'Home',
+  name: 'home',
   data: function() {
     return {
       pageID: 6,
@@ -18,12 +18,11 @@ export default {
     }
   },
   created: function() {
-    //console.log(this.url());
-    this.loadData(this.url());
+    this.loadData(this.getUrl(6));
   },
   methods: {
-     url: function() {
-      return `${wp.url}/wp-json/wp/v2/pages/${this.pageID}?_embed`;
+     getUrl: function(pageID) {
+      return `${wp.url}/wp-json/wp/v2/pages/${pageID}?_embed`;
     },
     loadData(url) {
       fetch(url).

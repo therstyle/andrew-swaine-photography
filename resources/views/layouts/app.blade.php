@@ -7,7 +7,7 @@
   <div class="wrapper" role="document">
     <div id="app">
       <main-header></main-header>
-      <home></home>
+      <router-view></router-view>
     </div>
   </div>
   @php do_action('get_footer') @endphp
