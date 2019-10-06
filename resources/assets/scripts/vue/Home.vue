@@ -18,10 +18,10 @@ export default {
     }
   },
   created: function() {
-    this.loadData(this.getUrl(6));
+    this.loadData(this.restUrl(6));
   },
   methods: {
-     getUrl: function(pageID) {
+     restUrl: function(pageID) {
       return `${wp.url}/wp-json/wp/v2/pages/${pageID}?_embed`;
     },
     loadData(url) {
