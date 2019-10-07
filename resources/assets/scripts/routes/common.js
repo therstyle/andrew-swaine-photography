@@ -7,7 +7,8 @@ import MainHeader from '../vue/MainHeader.vue';
 Vue.use(VueRouter);
 
 const router = new VueRouter({
-  routes: Routes
+  routes: Routes,
+  mode: 'history'
 });
 
 export default {
