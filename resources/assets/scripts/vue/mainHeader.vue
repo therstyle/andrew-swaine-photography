@@ -1,7 +1,7 @@
 <template>
   <header class="main">
-    <img :src="logo.url" :alt="logo.alt">
-    <nav></nav>
+    <img v-if="logo" :src="logo.url" :alt="logo.alt">
+    <nav v-if="menu">{{ menu }}</nav>
   </header>
 </template>
 
@@ -14,7 +14,8 @@ export default {
       logo: {
         url: '',
         alt: ''
-      }
+      },
+      menu: ''
     }
   },
   created() {
@@ -29,7 +30,8 @@ export default {
           console.log(data);
 
           this.logo.url = data.logo.url;
-          this.logo.alt = data.logo.title
+          this.logo.alt = data.logo.title;
+          this.menu = data.menu;
         }
       )
     }
