@@ -3,5 +3,5 @@ import Page404 from './Page404.vue';
 
 export default [
   {path: '/', component: Home},
-  {path: '/404', component: Page404},
+  {path: '*', component: Page404},
 ]
