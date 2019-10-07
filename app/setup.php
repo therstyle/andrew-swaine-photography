@@ -149,7 +149,8 @@ if(function_exists('acf_add_options_page')) {
 // REST API Endpoints
 function get_global_options() {
     $data = [
-        'logo' => get_field('logo', 'option')
+        'logo' => get_field('logo', 'option'),
+        'menu' => get_field('menu', 'option')
     ];
 
     return $data;
