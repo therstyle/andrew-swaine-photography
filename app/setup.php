@@ -147,12 +147,17 @@ if(function_exists('acf_add_options_page')) {
 }
 
 // REST API Endpoints
+function routerLink($path) {
+  $path = str_replace(home_url(), '', $path);
+  return $path;
+}
+
 function get_global_options() {
     $menu = get_field('menu', 'option');
     $menuItems = wp_get_nav_menu_items($menu);
     $items = [];
     foreach ($menuItems as $menuItem) {
-        array_push($items,  array('title' => $menuItem->title, 'slug' => str_replace(home_url(), '', $menuItem->url)));
+        array_push($items,  array('title' => $menuItem->title, 'slug' => routerLink($menuItem->url)));
     }
 
     $data = [
