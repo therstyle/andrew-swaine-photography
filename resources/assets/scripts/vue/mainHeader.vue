@@ -1,7 +1,6 @@
 <template>
   <header class="main">
     <img v-if="logo" :src="logo.url" :alt="logo.alt">
-    <nav v-if="menu">{{ menu }}</nav>
   </header>
 </template>
 
@@ -15,7 +14,7 @@ export default {
         url: '',
         alt: ''
       },
-      menu: ''
+      menu: []
     }
   },
   created() {

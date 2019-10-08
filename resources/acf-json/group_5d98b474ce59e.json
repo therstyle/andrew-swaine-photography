@@ -39,7 +39,7 @@
                 "class": "",
                 "id": ""
             },
-            "save_format": "menu",
+            "save_format": "id",
             "container": 0,
             "allow_null": 1
         }
@@ -61,5 +61,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1570474037
+    "modified": 1570492298
 }
