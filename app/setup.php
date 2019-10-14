@@ -172,7 +172,7 @@ function get_page_options($data) {
   $menu = get_field('menu', $data['id']);
   $menuItems = wp_get_nav_menu_items($menu);
   $items = [];
-  $images = [];
+  $gallery = [];
 
   foreach ($menuItems as $menuItem) {
       array_push($items,  array('title' => $menuItem->title, 'slug' => routerLink($menuItem->url)));

@@ -29,7 +29,7 @@ export default {
   data: function() {
     return {
       pageId: 0,
-      menu: '',
+      menu: [],
       gallery: []
     }
   },
@@ -45,6 +45,7 @@ export default {
       then(response => response.json()).
       then(data => {
         console.log(data);
+        this.menu = data.menu;
         this.gallery = data.acf.gallery;
       })
     }
