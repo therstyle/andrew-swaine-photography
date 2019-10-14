@@ -1,6 +1,6 @@
 <template>
   <article>
-    <h1>{{ pageTitle }} ???</h1>
+    <h1 class="page-title">{{ pageTitle }}</h1>
     <nav v-if="menu">
       <ul>
         <li v-for="(menuItem, index) in menu" :key="index">
@@ -50,7 +50,7 @@ export default {
         console.log(data);
         this.pageTitle = data.page_title;
         this.menu = data.menu;
-        this.gallery = data.acf.gallery;
+        this.gallery = data.gallery;
       })
     }
   }

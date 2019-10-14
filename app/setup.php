@@ -172,8 +172,8 @@ function get_page_options($data) {
   $menu = get_field('menu', $data['id']);
   $menuItems = wp_get_nav_menu_items($menu);
   $gallery = get_field('gallery', $data['id']);
-  $items = $menu ? [] : null;
-  $gallery_photos = $gallery ? [] : null;
+  $items = $menu ? [] : false;
+  $gallery_photos = $gallery ? [] : false;
 
   if ($menu) {
     foreach ($menuItems as $menuItem) {
