@@ -168,9 +168,19 @@ function get_global_options() {
     return $data;
 }
 
-function get_page_options($id) {
+function get_page_options($data) {
+  $menu = get_field('menu', $data['id']);
+  $menuItems = wp_get_nav_menu_items($menu);
+  $items = [];
+  $images = [];
+
+  foreach ($menuItems as $menuItem) {
+      array_push($items,  array('title' => $menuItem->title, 'slug' => routerLink($menuItem->url)));
+  }
+
   $data = [
-    'test' => 'this is working'
+      'menu' => $items,
+      'id' => $data['id']
   ];
 
   return $data;
