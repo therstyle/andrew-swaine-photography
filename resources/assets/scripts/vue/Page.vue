@@ -20,6 +20,7 @@ export default {
   name: 'page',
   data: function() {
     return {
+      pageID: 0,
       menu: '',
       gallery: []
     }

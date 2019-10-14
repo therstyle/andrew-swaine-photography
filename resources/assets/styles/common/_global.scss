@@ -10,7 +10,7 @@ body {
 }
 
 #app {
-  opacity: 0; //debug
+  opacity: 0.2; //debug
   padding: 1rem;
 }
 
@@ -29,5 +29,48 @@ header.main {
     margin-left: auto;
     margin-right: auto;
     display: block;
+  }
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+
+  > ul {
+    padding: 0;
+    display: flex;
+
+    > li {
+      list-style: none;
+      
+      > a {
+        color: var(--white);
+        padding: 1rem;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-size: 1.6rem;
+        transition: 0.2s all ease-in-out;
+        display: block;
+
+        &::after {
+          content: " ";
+          background: transparent;
+          width: 0;
+          height: 0.3rem;
+          transition: 0.2s all ease-in-out;
+          transition-delay: 0.2s;
+          display: block;
+        }
+
+        &:hover {
+          color: var(--red);
+
+          &::after {
+            background: var(--red);
+            width: 100%;
+          }
+        }
+      }
+    }
   }
 }
