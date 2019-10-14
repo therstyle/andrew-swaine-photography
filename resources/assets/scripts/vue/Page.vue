@@ -1,6 +1,13 @@
 <template>
   <article>
-    <nav v-if="menu">{{ menu }}</nav>
+    <nav v-if="menu">
+      <ul>
+        <li v-for="(menuItem, index) in menu" :key="index">
+          <router-link to=""></router-link>
+        </li>
+      </ul>
+    </nav>
+    
     <div v-if="gallery" class="gallery">
       <div v-for="(galleryItem, index) in gallery" :key="index" class="gallery-item">
         <img :src="galleryItem.url" :alt="galleryItem.alt">
@@ -26,7 +33,7 @@ export default {
     }
   },
   created: function() {
-    this.loadData(this.restUrl(2));
+    this.loadData(this.restUrl(15));
   },
   methods: {
      restUrl: function(pageID) {
