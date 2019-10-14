@@ -168,9 +168,22 @@ function get_global_options() {
     return $data;
 }
 
+function get_page_options($id) {
+  $data = [
+    'test' => 'this is working'
+  ];
+
+  return $data;
+}
+
 add_action('rest_api_init', function() {
     register_rest_route('as/v1', 'global', [
         'methods' => 'GET',
         'callback' => __NAMESPACE__ .'\\get_global_options'
     ]);
+
+    register_rest_route('as/v1', 'pages/(?P<id>\d+)', [
+      'methods' => 'GET',
+      'callback' => __NAMESPACE__ .'\\get_page_options'
+  ]);
 });
