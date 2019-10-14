@@ -171,16 +171,31 @@ function get_global_options() {
 function get_page_options($data) {
   $menu = get_field('menu', $data['id']);
   $menuItems = wp_get_nav_menu_items($menu);
-  $items = [];
-  $gallery = [];
+  $gallery = get_field('gallery', $data['id']);
+  $items = $menu ? [] : null;
+  $gallery_photos = $gallery ? [] : null;
 
-  foreach ($menuItems as $menuItem) {
-      array_push($items,  array('title' => $menuItem->title, 'slug' => routerLink($menuItem->url)));
+  if ($menu) {
+    foreach ($menuItems as $menuItem) {
+      array_push($items,  [
+        'title' => $menuItem->title, 
+        'slug' => routerLink($menuItem->url)
+      ]);
+    }
+  }
+
+  if($gallery) {
+    foreach ($gallery as $gallery_item) {
+      array_push($gallery_photos, [
+        'gallery_photo' => $gallery_item['photo']
+      ]);
+    }
   }
 
   $data = [
-      'menu' => $items,
-      'id' => $data['id']
+    'page_title' => get_the_title($data['id']),    
+    'menu' => $items,
+    'gallery' => $gallery_photos
   ];
 
   return $data;
@@ -197,3 +212,6 @@ add_action('rest_api_init', function() {
       'callback' => __NAMESPACE__ .'\\get_page_options'
   ]);
 });
+
+//Disable redirects let Vue handle routing
+remove_action('template_redirect', 'redirect_canonical');
