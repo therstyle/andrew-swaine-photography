@@ -27,7 +27,7 @@ export default {
   name: 'page',
   data: function() {
     return {
-      pageID: 0,
+      pageId: 0,
       menu: '',
       gallery: []
     }
@@ -36,8 +36,8 @@ export default {
     this.loadData(this.restUrl(15));
   },
   methods: {
-     restUrl: function(pageID) {
-      return `${wp.url}/wp-json/wp/v2/pages/${pageID}?_embed`;
+     restUrl: function(pageId) {
+      return `${wp.url}/wp-json/wp/v2/pages/${pageId}?_embed`;
     },
     loadData(url) {
       fetch(url).
