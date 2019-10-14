@@ -1,5 +1,6 @@
 <template>
   <article>
+    <h1>Page title here</h1>
     <nav v-if="menu">
       <ul>
         <li v-for="(menuItem, index) in menu" :key="index">
