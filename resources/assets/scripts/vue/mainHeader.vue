@@ -1,7 +1,7 @@
 <template>
   <header class="main">
     <img v-if="logo" :src="logo.url" :alt="logo.alt">
-    <nav class="menu">
+    <nav class="menu main-menu">
       <ul>
         <li v-for="(menuItem, index) in menu" :key="index">
           <router-link :to="menuItem.slug">{{ menuItem.title }}</router-link>

@@ -1,7 +1,7 @@
 <template>
   <article>
-    <h1 class="page-title">{{ pageTitle }} page id = {{ pageId }}</h1>
-    <nav v-if="menu">
+    <h1 class="page-title">{{ pageTitle }}</h1>
+    <nav v-if="menu" class="menu vertical-menu">
       <ul>
         <li v-for="(menuItem, index) in menu" :key="index">
           <router-link :to="menuItem.slug">{{ menuItem.title }}</router-link>
@@ -37,6 +37,7 @@ export default {
     pageId: Number
   },
   created: function() {
+    console.log(`page id = ${this.pageId}`);
     this.loadData(this.restUrl(this.pageId));
   },
   methods: {
