@@ -1,6 +1,6 @@
 <template>
   <article>
-    <h1 class="page-title">{{ pageTitle }}</h1>
+    <h1 class="page-title">{{ pageTitle }} page id = {{ pageId }}</h1>
     <nav v-if="menu">
       <ul>
         <li v-for="(menuItem, index) in menu" :key="index">
@@ -37,7 +37,8 @@ export default {
     pageId: Number
   },
   created: function() {
-    this.loadData(this.restUrl(15));
+    console.log(this.pageId);
+    this.loadData(this.restUrl(this.pageId));
   },
   methods: {
      restUrl: function(pageId) {
@@ -48,6 +49,7 @@ export default {
       then(response => response.json()).
       then(data => {
         console.log(data);
+        console.log(this.pageId);
         this.pageTitle = data.page_title;
         this.menu = data.menu;
         this.gallery = data.gallery;

@@ -4,6 +4,6 @@ import Page from './Page.vue';
 
 export default [
   {path: '/', component: Home, props: true, pageId: 6},
-  {path: '/people-photography/', component: Page, props: true, pageId: 15},
+  {path: '/people-photography/', component: Page, props: {pageId: 15}},
   //{path: '*', component: Page404},
 ]
