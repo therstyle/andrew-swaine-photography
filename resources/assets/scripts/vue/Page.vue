@@ -36,6 +36,13 @@ export default {
   props: {
     pageId: Number
   },
+  watch: {
+    $route () {
+      console.log('route changed');
+      console.log(`page id = ${this.pageId}`);
+      this.loadData(this.restUrl(this.pageId));
+    }
+  },
   created: function() {
     console.log(`page id = ${this.pageId}`);
     this.loadData(this.restUrl(this.pageId));
