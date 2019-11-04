@@ -12,7 +12,7 @@
     <div v-if="gallery" id="gallery">
       <div class="gallery-photos">
         <div v-for="(galleryItem, index) in gallery" :key="index" class="gallery-item" v-show="index + 1 === current">
-          <img :src="galleryItem.url" :alt="galleryItem.alt">
+          <img :src="galleryItem.gallery_photo.url" :alt="galleryItem.gallery_photo.alt">
         </div>
       </div>
 
