@@ -71,7 +71,7 @@ export default {
       })
     },
     nextPhoto() {
-      if (this.current < this.total ) {
+      if (this.current < this.total) {
         this.current++;
       }
       else {
