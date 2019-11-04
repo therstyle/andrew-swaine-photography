@@ -18,7 +18,11 @@
 
       <div class="gallery-details">
         <h1 class="page-title">{{ pageTitle }} <span class="count">{{ current }} / {{ total }}</span></h1>
-        <!-- controls -->
+        
+        <div class="gallery-controls">
+          <button id="prev" v-on:click="prevPhoto">Prev</button>
+          <button id="next" v-on:click="nextPhoto">Next</button>
+        </div>
       </div>
     </div>
 
@@ -65,6 +69,22 @@ export default {
         this.gallery = data.gallery;
         this.total = data.gallery.length
       })
+    },
+    nextPhoto() {
+      if (this.current < this.total ) {
+        this.current++;
+      }
+      else {
+        this.current = 1;
+      }
+    },
+    prevPhoto() {
+      if (this.current !== 1) {
+        this.current--;
+      }
+      else {
+        this.current = 1;
+      }
     }
   }
 }
