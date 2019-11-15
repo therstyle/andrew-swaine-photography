@@ -1,6 +1,6 @@
 <template>
   <header class="main">
-    <img v-if="logo" :src="logo.url" :alt="logo.alt">
+    <router-link to="/" v-if="logo"><img :src="logo.url" :alt="logo.alt"></router-link>
     <nav class="menu main-menu">
       <ul>
         <li v-for="(menuItem, index) in menu" :key="index">
