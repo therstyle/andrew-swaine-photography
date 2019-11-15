@@ -9,6 +9,15 @@ body {
   font-size: var(--font-size);
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+}
+
 #app {
   opacity: 0.2; //debug
   padding: 1rem;
@@ -21,6 +30,7 @@ body {
 
 .page-title {
   text-transform: uppercase;
+  font-size: 3.4rem;
 }
 
 header.main {
@@ -100,6 +110,28 @@ header.main {
           color: var(--white);
         }
       }
+    }
+  }
+}
+
+.gallery-details {
+  display: flex;
+
+  .page-title {
+    flex: 2;
+  }
+}
+
+.gallery-controls {
+  button {
+    background: none;
+    border: 3px solid var(--white);
+    border-radius: 100%;
+    width: 36px;
+    height: 36px;
+
+    &:hover {
+      cursor: pointer;
     }
   }
 }

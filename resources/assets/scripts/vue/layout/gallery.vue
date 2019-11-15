@@ -10,8 +10,8 @@
       <h1 class="page-title">{{ pageTitle }} <span class="count">{{ current }} / {{ total }}</span></h1>
       
       <div class="gallery-controls">
-        <button id="prev" v-on:click="prevPhoto">Prev</button>
-        <button id="next" v-on:click="nextPhoto">Next</button>
+        <button id="prev" v-on:click="prevPhoto"></button>
+        <button id="next" v-on:click="nextPhoto"></button>
       </div>
     </div>
   </div>

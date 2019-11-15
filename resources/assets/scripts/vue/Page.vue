@@ -1,6 +1,5 @@
 <template>
   <article>
-    <h1 class="page-title">{{ pageTitle }}</h1>
     <menu-group 
       v-if="menu"
       :menu="menu">
