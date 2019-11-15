@@ -1,43 +1,36 @@
 <template>
   <article>
     <h1 class="page-title">{{ pageTitle }}</h1>
-    <nav v-if="menu" class="menu vertical-menu">
-      <ul>
-        <li v-for="(menuItem, index) in menu" :key="index">
-          <router-link :to="menuItem.slug">{{ menuItem.title }}</router-link>
-        </li>
-      </ul>
-    </nav>
-    
-    <div v-if="gallery" id="gallery">
-      <div class="gallery-photos">
-        <div v-for="(galleryItem, index) in gallery" :key="index" class="gallery-item" v-show="index + 1 === current">
-          <img :src="galleryItem.gallery_photo.url" :alt="galleryItem.gallery_photo.alt">
-        </div>
-      </div>
+    <menu-group 
+      v-if="menu"
+      :menu="menu">
+    </menu-group>
 
-      <div class="gallery-details">
-        <h1 class="page-title">{{ pageTitle }} <span class="count">{{ current }} / {{ total }}</span></h1>
-        
-        <div class="gallery-controls">
-          <button id="prev" v-on:click="prevPhoto">Prev</button>
-          <button id="next" v-on:click="nextPhoto">Next</button>
-        </div>
-      </div>
-    </div>
-
+    <gallery 
+      v-if="gallery && gallery.length > 0"
+      :gallery="gallery"
+      :pageTitle="pageTitle"
+      :total="total"
+    >
+    </gallery>
   </article>
 </template>
 
 <script>
+import menuGroup from './layout/menuGroup.vue';
+import gallery from './layout/gallery.vue';
+
 export default {
   name: 'page',
+  components: {
+    menuGroup, 
+    gallery
+  },
   data: function() {
     return {
       pageTitle: '',
       menu: [],
       gallery: [],
-      current: 1,
       total: 0
     }
   },
@@ -69,22 +62,6 @@ export default {
         this.gallery = data.gallery;
         this.total = data.gallery.length
       })
-    },
-    nextPhoto() {
-      if (this.current < this.total) {
-        this.current++;
-      }
-      else {
-        this.current = 1;
-      }
-    },
-    prevPhoto() {
-      if (this.current !== 1) {
-        this.current--;
-      }
-      else {
-        this.current = 1;
-      }
     }
   }
 }
