@@ -6,5 +6,5 @@ export default [
   {path: '/', component: Home, props: true, pageId: 6},
   {path: '/people-photography/', component: Page, props: {pageId: 15}},
   {path: '/people-photography/fashion/', component: Page, props: {pageId: 29}},
-  {path: '*', component: Page404},
+  {path: '*', component: Page404, props: {pageType: '404'}},
 ]

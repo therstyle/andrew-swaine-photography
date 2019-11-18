@@ -30,11 +30,12 @@ export default {
       pageTitle: '',
       menu: [],
       gallery: [],
-      total: 0
+      total: 0,
     }
   },
   props: {
-    pageId: Number
+    pageId: Number,
+    pageType: String
   },
   watch: {
     $route () {

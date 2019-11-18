@@ -138,6 +138,10 @@ header.main {
     width: 36px;
     height: 36px;
 
+    &#prev {
+      margin-right: 5px;
+    }
+
     &:hover {
       cursor: pointer;
     }
