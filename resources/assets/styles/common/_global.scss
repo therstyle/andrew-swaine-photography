@@ -9,6 +9,10 @@ body {
   font-size: var(--font-size);
 }
 
+img {
+  max-width: 100%;
+}
+
 h1,
 h2,
 h3,
@@ -112,6 +116,10 @@ header.main {
       }
     }
   }
+}
+
+.gallery-photos {
+  margin-bottom: 40px;
 }
 
 .gallery-details {
