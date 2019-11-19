@@ -1,6 +1,6 @@
 <template>
-  <div id="gallery">
-    <div class="gallery-photos">
+  <div>
+    <div class="gallery-photos" ref="gallery">
       <div v-for="(galleryItem, index) in gallery" :key="index" class="gallery-item" v-show="index + 1 === current">
         <img :src="galleryItem.gallery_photo.url" :alt="galleryItem.gallery_photo.alt">
       </div>
@@ -17,7 +17,13 @@
   </div>
 </template>
 
+<style lang="scss">
+  //@import '../styles/common/flickity';
+</style>
+
 <script>
+import Flickity from 'flickity';
+
 export default {
   name: 'gallery',
   data: function() {
@@ -31,6 +37,15 @@ export default {
     total: Number
   },
   methods: {
+    initCarousel() {
+      new Flickity( this.$refs.gallery, {
+        freeScroll: true,
+        contain: true,
+        prevNextButtons: false,
+        pageDots: false,
+        cellAlign: 'left'
+      });
+    },
     nextPhoto() {
       if (this.current < this.total) {
         this.current++;
@@ -47,6 +62,9 @@ export default {
         this.current = 1;
       }
     }
+  },
+  mounted() {
+    this.initCarousel();
   }
 }
 </script>
