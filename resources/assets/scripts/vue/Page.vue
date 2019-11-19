@@ -13,7 +13,7 @@
     <gallery 
       v-if="gallery && gallery.length > 0"
       :gallery="gallery"
-      :pageTitle="pageTitle"
+      :theTitle="theTitle"
       :total="total"
     >
     </gallery>
@@ -34,7 +34,7 @@ export default {
   },
   data: function() {
     return {
-      pageTitle: '',
+      theTitle: '',
       theContent: '',
       menu: [],
       gallery: [],
@@ -65,7 +65,7 @@ export default {
       then(response => response.json()).
       then(data => {
         console.log(data);
-        this.pageTitle = data.page_title;
+        this.theTitle = data.the_title;
         this.theContent = data.the_content;
         this.menu = data.menu;
         this.gallery = data.gallery;
