@@ -169,6 +169,8 @@ function get_global_options() {
 }
 
 function get_page_options($data) {
+  $page_title = get_the_title($data['id']);
+  $the_content = get_post_field('post_content', $data['id']);
   $menu = get_field('menu', $data['id']);
   $menuItems = wp_get_nav_menu_items($menu);
   $gallery = get_field('gallery', $data['id']);
@@ -193,7 +195,8 @@ function get_page_options($data) {
   }
 
   $data = [
-    'page_title' => get_the_title($data['id']),    
+    'page_title' => $page_title,
+    'the_content' => $the_content,    
     'menu' => $items,
     'gallery' => $gallery_photos
   ];

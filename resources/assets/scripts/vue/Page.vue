@@ -1,5 +1,10 @@
 <template>
   <article>
+    <the-content
+      v-if="theContent"
+      :theContent="theContent"
+    ></the-content>
+    
     <menu-group 
       v-if="menu"
       :menu="menu">
@@ -18,16 +23,19 @@
 <script>
 import menuGroup from './layout/menuGroup.vue';
 import gallery from './layout/gallery.vue';
+import theContent from './layout/theContent.vue';
 
 export default {
   name: 'page',
   components: {
     menuGroup, 
-    gallery
+    gallery,
+    theContent
   },
   data: function() {
     return {
       pageTitle: '',
+      theContent: '',
       menu: [],
       gallery: [],
       total: 0,
@@ -58,6 +66,7 @@ export default {
       then(data => {
         console.log(data);
         this.pageTitle = data.page_title;
+        this.theContent = data.the_content;
         this.menu = data.menu;
         this.gallery = data.gallery;
         this.total = data.gallery.length
