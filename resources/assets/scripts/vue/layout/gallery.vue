@@ -18,7 +18,7 @@
 </template>
 
 <style lang="scss">
-  //@import '../styles/common/flickity';
+  @import '../../../styles/vendor/flickity';
 </style>
 
 <script>
