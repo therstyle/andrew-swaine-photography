@@ -43,24 +43,34 @@ export default {
         pageDots: false,
         cellAlign: 'left'
       });
-      console.log('init carousel');
+
+      this.carousel.on('change', function(index) {
+        this.current = index + 1;
+        console.log('changed');
+      });
     },
-    nextPhoto() {
+    countUp() {
       if (this.current < this.total) {
         this.current++;
       }
       else {
         this.current = this.total;
       }
-      this.carousel.next();
     },
-    prevPhoto() {
+    countDown() {
       if (this.current !== 1) {
         this.current--;
       }
       else {
         this.current = 1;
       }
+    },
+    nextPhoto() {
+      //this.countUp();
+      this.carousel.next();
+    },
+    prevPhoto() {
+      //this.countDown();
       this.carousel.previous();
     }
   },
