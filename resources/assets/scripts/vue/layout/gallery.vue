@@ -1,9 +1,7 @@
 <template>
   <div>
     <div class="gallery-photos" ref="gallery">
-      <div v-for="(galleryItem, index) in gallery" :key="index" class="gallery-item">
-        <img :src="galleryItem.gallery_photo.url" :alt="galleryItem.gallery_photo.alt">
-      </div>
+      <img v-for="(galleryItem, index) in gallery" :key="index" :src="galleryItem.gallery_photo.url" :alt="galleryItem.gallery_photo.alt">
     </div>
 
     <div class="gallery-details">
@@ -45,6 +43,7 @@ export default {
         pageDots: false,
         cellAlign: 'left'
       });
+      console.log('init carousel');
     },
     nextPhoto() {
       if (this.current < this.total) {
