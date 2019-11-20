@@ -50,7 +50,7 @@ export default {
         this.current++;
       }
       else {
-        this.current = 1;
+        this.current = this.total;
       }
       this.carousel.next();
     },
