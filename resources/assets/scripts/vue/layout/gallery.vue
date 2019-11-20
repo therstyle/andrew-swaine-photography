@@ -45,8 +45,9 @@ export default {
       });
 
       this.carousel.on('change', function(index) {
-        this.current = index + 1;
-        console.log('changed');
+        this.current = index;
+        console.log(this.current);
+        console.log('changed' + index);
       });
     },
     countUp() {
