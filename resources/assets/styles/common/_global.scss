@@ -120,6 +120,11 @@ header.main {
 
 .gallery-photos {
   margin-bottom: 40px;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
 }
 
 .gallery-details {

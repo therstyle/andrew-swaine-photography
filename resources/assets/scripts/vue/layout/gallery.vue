@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="gallery-photos" ref="gallery">
-      <div v-for="(galleryItem, index) in gallery" :key="index" class="gallery-item" v-show="index + 1 === current">
+      <div v-for="(galleryItem, index) in gallery" :key="index" class="gallery-item">
         <img :src="galleryItem.gallery_photo.url" :alt="galleryItem.gallery_photo.alt">
       </div>
     </div>
@@ -28,7 +28,8 @@ export default {
   name: 'gallery',
   data: function() {
     return {
-      current: 1
+      current: 1,
+      carousel: ''
     }
   },
   props: {
@@ -38,8 +39,7 @@ export default {
   },
   methods: {
     initCarousel() {
-      new Flickity( this.$refs.gallery, {
-        freeScroll: true,
+      this.carousel = new Flickity( this.$refs.gallery, {
         contain: true,
         prevNextButtons: false,
         pageDots: false,
@@ -53,6 +53,7 @@ export default {
       else {
         this.current = 1;
       }
+      this.carousel.next();
     },
     prevPhoto() {
       if (this.current !== 1) {
@@ -61,6 +62,7 @@ export default {
       else {
         this.current = 1;
       }
+      this.carousel.previous();
     }
   },
   mounted() {
