@@ -49,28 +49,10 @@ export default {
 
       this.carousel.on('change', this.currentIndex);
     },
-    countUp() {
-      if (this.current < this.total) {
-        this.current++;
-      }
-      else {
-        this.current = this.total;
-      }
-    },
-    countDown() {
-      if (this.current !== 1) {
-        this.current--;
-      }
-      else {
-        this.current = 1;
-      }
-    },
     nextPhoto() {
-      //this.countUp();
       this.carousel.next();
     },
     prevPhoto() {
-      //this.countDown();
       this.carousel.previous();
     }
   },
