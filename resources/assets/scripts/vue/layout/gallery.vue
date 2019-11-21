@@ -36,6 +36,9 @@ export default {
     total: Number
   },
   methods: {
+    currentIndex(index) {
+      this.current = index + 1;
+    },
     initCarousel() {
       this.carousel = new Flickity( this.$refs.gallery, {
         contain: true,
@@ -44,11 +47,7 @@ export default {
         cellAlign: 'left'
       });
 
-      this.carousel.on('change', function(index) {
-        this.current = index;
-        console.log(this.current);
-        console.log('changed' + index);
-      });
+      this.carousel.on('change', this.currentIndex);
     },
     countUp() {
       if (this.current < this.total) {
