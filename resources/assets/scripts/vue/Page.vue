@@ -1,22 +1,28 @@
 <template>
   <article>
-    <the-content
-      v-if="theContent"
-      :theContent="theContent"
-    ></the-content>
+    <template v-if="pageType === '404'">
+      <h1 class="page-title">404 Error</h1>
+    </template>
     
-    <menu-group 
-      v-if="menu"
-      :menu="menu">
-    </menu-group>
+    <template v-else>
+      <the-content
+        v-if="theContent"
+        :theContent="theContent"
+      ></the-content>
+      
+      <menu-group 
+        v-if="menu"
+        :menu="menu">
+      </menu-group>
 
-    <gallery 
-      v-if="gallery && gallery.length > 0"
-      :gallery="gallery"
-      :theTitle="theTitle"
-      :total="total"
-    >
-    </gallery>
+      <gallery 
+        v-if="gallery && gallery.length > 0"
+        :gallery="gallery"
+        :theTitle="theTitle"
+        :total="total"
+      >
+      </gallery>
+    </template>
   </article>
 </template>
 
