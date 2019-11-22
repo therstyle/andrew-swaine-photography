@@ -135,7 +135,10 @@ add_action('after_setup_theme', function () {
 add_action('wp_enqueue_scripts', function () {
     wp_enqueue_script('sage/main.js', asset_path('scripts/main.js'), ['jquery'], null, true);
     $ajax_params = [
-        'url' => home_url()
+        'url' => home_url(),
+        'routes' => [
+          ['path' => '/', 'component' => 'Page', 'props' => ['pageType' => '404']]
+        ]
     ];
 
     wp_localize_script('sage/main.js', 'wp', $ajax_params);
