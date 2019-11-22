@@ -131,14 +131,32 @@ add_action('after_setup_theme', function () {
     });
 });
 
+function routerLink($path) {
+  $path = str_replace(home_url(), '', $path);
+  return $path;
+}
+
 // WP localize Script
 add_action('wp_enqueue_scripts', function () {
     wp_enqueue_script('sage/main.js', asset_path('scripts/main.js'), ['jquery'], null, true);
+    $routes = [
+      ['path' => '*', 'component' => 'Page', 'props' => ['pageType' => '404']]
+    ];
+
+    $pages = get_posts('post_type=page');
+    foreach($pages as $page) {
+      array_push($routes, [
+        'path' => routerLink(get_the_permalink($page->ID)), 
+        'component' => 'Page', 
+        'props' => ['pageId' => $page->ID, 'pageType' => 'page']
+        ]);
+    }
+
+    $routes = json_encode($routes);
+
     $ajax_params = [
         'url' => home_url(),
-        'routes' => [
-          ['path' => '/', 'component' => 'Page', 'props' => ['pageType' => '404']]
-        ]
+        'routes' => $routes
     ];
 
     wp_localize_script('sage/main.js', 'wp', $ajax_params);
@@ -150,11 +168,6 @@ if(function_exists('acf_add_options_page')) {
 }
 
 // REST API Endpoints
-function routerLink($path) {
-  $path = str_replace(home_url(), '', $path);
-  return $path;
-}
-
 function get_global_options() {
     $menu = get_field('menu', 'option');
     $menuItems = wp_get_nav_menu_items($menu);
