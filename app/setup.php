@@ -153,10 +153,20 @@ add_action('wp_enqueue_scripts', function () {
     }
 
     $routes = json_encode($routes);
+    $routes_test = '[
+      {"path": "/", "component": "Home", "props": {"pageId": "6"}},
+      {"path": "/people-photography/", "component": "Page", "props": {"pageId": "15"}},
+      {"path": "/people-photography/fashion/", "component": "Page", "props": {"pageId": "29"}},
+      {"path": "/contact", "component": "Page", "props": {"pageId": "72"}},
+      {"path": "*", "component": "Page", "props": {"pageType": "404"}}
+    ]';
+  
+    $routes_test = json_decode($routes_test);
+    //$routes_test = trim($routes_test);
 
     $ajax_params = [
         'url' => home_url(),
-        'routes' => $routes
+        'routes' => $routes_test
     ];
 
     wp_localize_script('sage/main.js', 'wp', $ajax_params);

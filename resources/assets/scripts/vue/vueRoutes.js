@@ -8,3 +8,5 @@ export default [
   {path: '/contact', component: Page, props: {pageId: 72}},
   {path: '*', component: Page, props: {pageType: '404'}},
 ]
+
+//export default wp.routes;
