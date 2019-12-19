@@ -1,7 +1,14 @@
 import Home from './Home.vue';
 import Page from './Page.vue';
+import Vue from 'vue';
 
-const vueRoutes = wp['routes'].map(route => ({path: route.path, component: route.component, props: route.props}));
+Vue.component('Home', Home);
+Vue.component('Page', Page);
+
+const vueRoutes = wp['routes'].map(route => ({
+  path: route.path, 
+  component: Vue.component(route.component), 
+  props: route.props}));
 
 console.log(vueRoutes);
 
