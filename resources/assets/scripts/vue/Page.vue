@@ -59,7 +59,6 @@ export default {
     }
   },
   created: function() {
-    //console.log(wp.routes); //wp localize script
     console.log(`page id = ${this.pageId}`);
     this.loadData(this.restUrl(this.pageId));
   },

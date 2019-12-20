@@ -16,19 +16,4 @@ const vueRoutes = wp['routes'].map(route => {
   }
 });
 
-console.log(vueRoutes);
-console.log(wp.auto);
-
-// export default [
-//   {path: '/', component: Home, props: {pageId: 6}},
-//   {path: '/people-photography/', component: Page, props: {pageId: 15}},
-//   {path: '/people-photography/fashion/', component: Page, props: {pageId: 29}},
-//   {path: '/contact', component: Page, props: {pageId: 72}},
-//   {path: '*', component: Page, props: {pageType: '404'}},
-// ]
-
-//export default wp.routes;
-
-
-
 export default vueRoutes;
