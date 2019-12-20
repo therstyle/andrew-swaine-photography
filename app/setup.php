@@ -139,11 +139,9 @@ function routerLink($path) {
 // WP localize Script
 add_action('wp_enqueue_scripts', function () {
     wp_enqueue_script('sage/main.js', asset_path('scripts/main.js'), ['jquery'], null, true);
-    $routes = [
-      ['path' => '*', 'component' => 'Page', 'props' => ['pageType' => '404']]
-    ];
+    $routes = [];
 
-    $pages = get_posts('post_type=page');
+    $pages = get_posts('post_type=page&nopaging=true');
     foreach($pages as $page) {
       array_push($routes, [
         'path' => routerLink(get_the_permalink($page->ID)), 
@@ -152,7 +150,9 @@ add_action('wp_enqueue_scripts', function () {
         ]);
     }
 
-    $routes = json_encode($routes);
+    array_push($routes, ['path' => '*', 'component' => 'Page', 'props' => ['pageType' => '404']]);
+
+    //$routes = json_encode($routes);
     $routes_test = '[
       {"path": "/", "component": "Home", "props": {"pageId": "6"}},
       {"path": "/people-photography/", "component": "Page", "props": {"pageId": "15"}},
@@ -166,7 +166,8 @@ add_action('wp_enqueue_scripts', function () {
 
     $ajax_params = [
         'url' => home_url(),
-        'routes' => $routes_test
+        'routes' => $routes,
+        'auto' => $routes
     ];
 
     wp_localize_script('sage/main.js', 'wp', $ajax_params);

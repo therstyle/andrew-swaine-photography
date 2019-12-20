@@ -17,6 +17,7 @@ const vueRoutes = wp['routes'].map(route => {
 });
 
 console.log(vueRoutes);
+console.log(wp.auto);
 
 // export default [
 //   {path: '/', component: Home, props: {pageId: 6}},
