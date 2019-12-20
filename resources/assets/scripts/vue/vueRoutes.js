@@ -8,7 +8,7 @@ Vue.component('Page', Page);
 const vueRoutes = wp['routes'].map(route => ({
   path: route.path, 
   component: Vue.component(route.component), 
-  props: route.props}));
+  props: {pageId: parseInt(route.props.pageId)}}));
 
 console.log(vueRoutes);
 
