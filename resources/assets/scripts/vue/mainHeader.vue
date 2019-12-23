@@ -1,7 +1,13 @@
 <template>
   <header class="main">
     <router-link to="/" v-if="logo"><img :src="logo.url" :alt="logo.alt"></router-link>
-    <nav class="menu main-menu">
+    <button class="menu-toggle" :class="{ 'menu-active': menuActive }" v-on:click="menuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="menu main-menu" :class="{ 'menu-active': menuActive }">
       <ul>
         <li v-for="(menuItem, index) in menu" :key="index">
           <router-link :to="menuItem.slug">{{ menuItem.title }}</router-link>
@@ -21,7 +27,8 @@ export default {
         url: '',
         alt: ''
       },
-      menu: []
+      menu: [],
+      menuActive: false
     }
   },
   created() {
@@ -34,12 +41,15 @@ export default {
       then(
         data => {
           console.log(data);
-
           this.logo.url = data.logo.url;
           this.logo.alt = data.logo.title;
           this.menu = data.menu;
         }
       )
+    },
+    menuToggle() {
+      console.log('toggled menu');
+      this.menuActive = !this.menuActive;
     }
   }
 }
