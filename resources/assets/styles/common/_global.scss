@@ -54,6 +54,7 @@ header.main {
   display: flex;
 
   > ul {
+    margin: 0;
     padding: 0;
     display: flex;
 
@@ -74,7 +75,7 @@ header.main {
       > li {
         > a {
           color: var(--white);
-          padding: 1rem;
+          padding: 0.6rem;
           text-transform: uppercase;
           font-size: 1.6rem;
           transition: 0.2s all ease-in-out;
@@ -110,8 +111,16 @@ header.main {
       > li {
         > a {
           text-transform: uppercase;
-          font-size: 2.4rem;
+          font-size: 4.4rem;
+          font-weight: bold;
+          line-height: 1;
+          letter-spacing: -2px;
           color: var(--white);
+          transition: 0.3s all;
+
+          &:hover {
+            color: var(--red);
+          }
         }
       }
     }
