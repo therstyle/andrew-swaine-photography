@@ -1,7 +1,10 @@
 <template>
   <div>
     <div class="gallery-photos" ref="gallery">
-      <img v-for="(galleryItem, index) in gallery" :key="index" :src="galleryItem.gallery_photo.url" :alt="galleryItem.gallery_photo.alt">
+      <img v-for="(galleryItem, index) in gallery" 
+      :key="index" 
+      :data-flickity-lazyload="galleryItem.gallery_photo.url" 
+      :alt="galleryItem.gallery_photo.alt">
     </div>
 
     <div class="gallery-details">
@@ -61,7 +64,8 @@ export default {
         contain: true,
         prevNextButtons: false,
         pageDots: false,
-        cellAlign: 'left'
+        cellAlign: 'left',
+        lazyLoad: true
       });
 
       this.carousel.on('change', this.currentIndex);
