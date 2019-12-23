@@ -34,7 +34,8 @@ h6 {
 
 .page-title {
   text-transform: uppercase;
-  font-size: 3.4rem;
+  font-size: 4.4rem;
+  letter-spacing: -2px;
 }
 
 header.main {
@@ -145,6 +146,10 @@ header.main {
   .page-title {
     flex: 2;
   }
+}
+
+.count {
+  color: var(--red);
 }
 
 .gallery-controls {

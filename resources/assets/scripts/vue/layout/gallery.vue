@@ -5,7 +5,7 @@
     </div>
 
     <div class="gallery-details">
-      <h1 class="page-title">{{ theTitle }} <span class="count">{{ current }} / {{ total }}</span></h1>
+      <h1 class="page-title">{{ theTitle }} <span class="count">{{ current }}/{{ total }}</span></h1>
       
       <div class="gallery-controls">
         <button id="prev" v-on:click="prevPhoto"></button>
