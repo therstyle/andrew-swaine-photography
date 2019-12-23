@@ -159,6 +159,17 @@ header.main {
     border-radius: 100%;
     width: 36px;
     height: 36px;
+    padding: 0.5rem;
+    outline: none;
+    transition: 0.3s all;
+
+    svg {
+      max-height: 17px;
+
+      g {
+        transition: 0.3s all;
+      }
+    }
 
     &#prev {
       margin-right: 5px;
@@ -166,6 +177,11 @@ header.main {
 
     &:hover {
       cursor: pointer;
+      border-color: var(--red);
+
+      svg g {
+        fill: var(--red);
+      }
     }
   }
 }
