@@ -5,6 +5,11 @@
     </template>
     
     <template v-else>
+      <featured-image
+        v-if="featured"
+        :image="featured"
+      ></featured-image>
+
       <the-content
         v-if="theContent"
         :theContent="theContent"
@@ -30,18 +35,21 @@
 import menuGroup from './layout/menuGroup.vue';
 import gallery from './layout/gallery.vue';
 import theContent from './layout/theContent.vue';
+import featuredImage from './layout/featuredImage.vue';
 
 export default {
   name: 'page',
   components: {
     menuGroup, 
     gallery,
-    theContent
+    theContent,
+    featuredImage
   },
   data: function() {
     return {
       theTitle: '',
       theContent: '',
+      featured: '',
       menu: [],
       gallery: [],
       total: 0,
@@ -73,6 +81,7 @@ export default {
         console.log(data);
         this.theTitle = data.the_title;
         this.theContent = data.the_content;
+        this.featured = data.featured;
         this.menu = data.menu;
         this.gallery = data.gallery;
         this.total = data.gallery.length

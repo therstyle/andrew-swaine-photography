@@ -189,6 +189,7 @@ function get_page_options($data) {
   $menu = get_field('menu', $data['id']);
   $menuItems = wp_get_nav_menu_items($menu);
   $gallery = get_field('gallery', $data['id']);
+  $featured = has_post_thumbnail($data['id']) ? get_the_post_thumbnail($data['id'], 'full') : null;
   $items = [];
   $gallery_photos = [];
 
@@ -211,7 +212,8 @@ function get_page_options($data) {
 
   $data = [
     'the_title' => $the_title,
-    'the_content' => $the_content,    
+    'the_content' => $the_content,
+    'featured' => $featured,    
     'menu' => $items,
     'gallery' => $gallery_photos
   ];
