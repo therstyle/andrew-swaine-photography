@@ -1,42 +1,90 @@
 <template>
   <article>
-    <nav v-if="menu">{{ menu }}</nav>
-    <div v-if="gallery" class="gallery">
-      <div v-for="(galleryItem, index) in gallery" :key="index" class="gallery-item">
-        <img :src="galleryItem.url" :alt="galleryItem.alt">
-      </div>
-    </div>
+    <template v-if="pageType === '404'">
+      <h1 class="page-title">404 Error</h1>
+    </template>
+    
+    <template v-else>
+      <featured-image
+        v-if="featured"
+        :image="featured"
+      ></featured-image>
 
-    <!-- add gallery controls here -->
-    <div v-if="gallery">
-      <!-- heading -->
-      <!-- controls -->
-    </div>
+      <the-content
+        v-if="theContent"
+        :theContent="theContent"
+      ></the-content>
+      
+      <menu-group 
+        v-if="menu"
+        :menu="menu">
+      </menu-group>
+
+      <gallery 
+        v-if="gallery && gallery.length > 0"
+        :gallery="gallery"
+        :theTitle="theTitle"
+        :total="total"
+      >
+      </gallery>
+    </template>
   </article>
 </template>
 
 <script>
+import menuGroup from './layout/menuGroup.vue';
+import gallery from './layout/gallery.vue';
+import theContent from './layout/theContent.vue';
+import featuredImage from './layout/featuredImage.vue';
+
 export default {
   name: 'page',
+  components: {
+    menuGroup, 
+    gallery,
+    theContent,
+    featuredImage
+  },
   data: function() {
     return {
-      menu: '',
-      gallery: []
+      theTitle: '',
+      theContent: '',
+      featured: '',
+      menu: [],
+      gallery: [],
+      total: 0,
+    }
+  },
+  props: {
+    pageId: Number,
+    pageType: String
+  },
+  watch: {
+    $route () {
+      console.log('route changed');
+      console.log(`page id = ${this.pageId}`);
+      this.loadData(this.restUrl(this.pageId));
     }
   },
   created: function() {
-    this.loadData(this.restUrl(2));
+    console.log(`page id = ${this.pageId}`);
+    this.loadData(this.restUrl(this.pageId));
   },
   methods: {
-     restUrl: function(pageID) {
-      return `${wp.url}/wp-json/wp/v2/pages/${pageID}?_embed`;
+     restUrl: function(pageId) {
+      return `${wp.url}/wp-json/as/v1/pages/${pageId}`;
     },
     loadData(url) {
       fetch(url).
       then(response => response.json()).
       then(data => {
         console.log(data);
-        this.gallery = data.acf.gallery;
+        this.theTitle = data.the_title;
+        this.theContent = data.the_content;
+        this.featured = data.featured;
+        this.menu = data.menu;
+        this.gallery = data.gallery;
+        this.total = data.gallery.length
       })
     }
   }

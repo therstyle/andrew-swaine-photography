@@ -26,6 +26,8 @@
     "extends": "stylelint-config-standard",
     "rules": {
       "no-empty-source": null,
+      "no-eol-whitespace": null,
+      "no-descending-specificity": null,
       "no-missing-end-of-source-newline": null,
       "at-rule-no-unknown": [
         true,
@@ -110,6 +112,7 @@
     "yargs": "~11.0.0"
   },
   "dependencies": {
+    "flickity": "^2.2.1",
     "jquery": "^3.3.1",
     "vue-router": "^3.1.3"
   }

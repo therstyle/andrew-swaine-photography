@@ -9,14 +9,32 @@ body {
   font-size: var(--font-size);
 }
 
+img {
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+}
+
 #app {
-  opacity: 0; //debug
+  opacity: 0.2; //debug
   padding: 1rem;
 }
 
 .wrapper {
   max-width: var(--max-width);
   margin: auto;
+}
+
+.page-title {
+  text-transform: uppercase;
+  font-size: 3.4rem;
 }
 
 header.main {
@@ -29,5 +47,110 @@ header.main {
     margin-left: auto;
     margin-right: auto;
     display: block;
+  }
+}
+
+.menu {
+  display: flex;
+
+  > ul {
+    padding: 0;
+    display: flex;
+
+    > li {
+      list-style: none;
+      
+      > a {
+        display: block;
+        text-decoration: none;
+      }
+    }
+  }
+
+  &.main-menu {
+    justify-content: center;
+
+    > ul {
+      > li {
+        > a {
+          color: var(--white);
+          padding: 1rem;
+          text-transform: uppercase;
+          font-size: 1.6rem;
+          transition: 0.2s all ease-in-out;
+          display: block;
+  
+          &::after {
+            content: " ";
+            background: transparent;
+            width: 0;
+            height: 0.3rem;
+            transition: 0.2s all ease-in-out;
+            transition-delay: 0.2s;
+            display: block;
+          }
+  
+          &:hover {
+            color: var(--red);
+  
+            &::after {
+              background: var(--red);
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.vertical-menu {
+    > ul {
+      flex-direction: column;
+
+      > li {
+        > a {
+          text-transform: uppercase;
+          font-size: 2.4rem;
+          color: var(--white);
+        }
+      }
+    }
+  }
+}
+
+.gallery-photos {
+  margin-bottom: 40px;
+  width: 100%;
+  max-width: 940px;
+
+  img {
+    width: 100%;
+    height: 630px;
+  }
+}
+
+.gallery-details {
+  display: flex;
+
+  .page-title {
+    flex: 2;
+  }
+}
+
+.gallery-controls {
+  button {
+    background: none;
+    border: 3px solid var(--white);
+    border-radius: 100%;
+    width: 36px;
+    height: 36px;
+
+    &#prev {
+      margin-right: 5px;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }

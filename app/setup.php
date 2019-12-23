@@ -131,11 +131,31 @@ add_action('after_setup_theme', function () {
     });
 });
 
+function routerLink($path) {
+  $path = str_replace(home_url(), '', $path);
+  return $path;
+}
+
 // WP localize Script
 add_action('wp_enqueue_scripts', function () {
     wp_enqueue_script('sage/main.js', asset_path('scripts/main.js'), ['jquery'], null, true);
+    $routes = [];
+
+    $pages = get_posts('post_type=page&nopaging=true');
+    foreach($pages as $page) {
+      array_push($routes, [
+        'path' => routerLink(get_the_permalink($page->ID)), 
+        'component' => 'Page', 
+        'props' => ['pageId' => $page->ID, 'pageType' => 'page']
+        ]);
+    }
+
+    array_push($routes, ['path' => '*', 'component' => 'Page', 'props' => ['pageType' => '404']]);
+
     $ajax_params = [
-        'url' => home_url()
+        'url' => home_url(),
+        'routes' => $routes,
+        'auto' => $routes
     ];
 
     wp_localize_script('sage/main.js', 'wp', $ajax_params);
@@ -147,11 +167,6 @@ if(function_exists('acf_add_options_page')) {
 }
 
 // REST API Endpoints
-function routerLink($path) {
-  $path = str_replace(home_url(), '', $path);
-  return $path;
-}
-
 function get_global_options() {
     $menu = get_field('menu', 'option');
     $menuItems = wp_get_nav_menu_items($menu);
@@ -168,9 +183,55 @@ function get_global_options() {
     return $data;
 }
 
+function get_page_options($data) {
+  $the_title = get_the_title($data['id']);
+  $the_content = get_post_field('post_content', $data['id']);
+  $menu = get_field('menu', $data['id']);
+  $menuItems = wp_get_nav_menu_items($menu);
+  $gallery = get_field('gallery', $data['id']);
+  $featured = has_post_thumbnail($data['id']) ? get_the_post_thumbnail($data['id'], 'full') : null;
+  $items = [];
+  $gallery_photos = [];
+
+  if ($menu) {
+    foreach ($menuItems as $menuItem) {
+      array_push($items,  [
+        'title' => $menuItem->title, 
+        'slug' => routerLink($menuItem->url)
+      ]);
+    }
+  }
+
+  if($gallery) {
+    foreach ($gallery as $gallery_item) {
+      array_push($gallery_photos, [
+        'gallery_photo' => $gallery_item['photo']
+      ]);
+    }
+  }
+
+  $data = [
+    'the_title' => $the_title,
+    'the_content' => $the_content,
+    'featured' => $featured,    
+    'menu' => $items,
+    'gallery' => $gallery_photos
+  ];
+
+  return $data;
+}
+
 add_action('rest_api_init', function() {
     register_rest_route('as/v1', 'global', [
         'methods' => 'GET',
         'callback' => __NAMESPACE__ .'\\get_global_options'
     ]);
+
+    register_rest_route('as/v1', 'pages/(?P<id>\d+)', [
+      'methods' => 'GET',
+      'callback' => __NAMESPACE__ .'\\get_page_options'
+  ]);
 });
+
+//Disable redirects let Vue handle routing
+remove_action('template_redirect', 'redirect_canonical');

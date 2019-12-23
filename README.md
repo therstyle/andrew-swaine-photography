@@ -1,6 +1,6 @@
-# [SageJS](https://github.com/pixelcollective/sageJS)
+# Andrew Swaine Photography
 
-SageJS is the [Sage starter theme](https://roots.io/sage/) with Vue batteries included.
+Andrew Swaine Photography is a WordPress theme built with [SageJS](https://github.com/pixelcollective/sageJS) a [Sage starter theme](https://roots.io/sage/) with Vue batteries included.
 
 Created from 9.0.5. No front-end library.
 
