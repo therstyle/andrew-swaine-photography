@@ -1,5 +1,9 @@
 <template>
   <article>
+    <vue-headful
+      :title="titleTag"
+    />
+
     <template v-if="pageType === '404'">
       <h1 class="page-title">404 Error</h1>
     </template>
@@ -45,6 +49,7 @@ import gallery from './layout/gallery.vue';
 import theContent from './layout/theContent.vue';
 import featuredImage from './layout/featuredImage.vue';
 import videos from './layout/videos.vue';
+import vueHeadful from 'vue-headful';
 
 export default {
   name: 'page',
@@ -53,7 +58,8 @@ export default {
     gallery,
     theContent,
     featuredImage,
-    videos
+    videos,
+    vueHeadful
   },
   data: function() {
     return {
@@ -64,6 +70,7 @@ export default {
       gallery: [],
       videos: [],
       total: 0,
+      titleTag: ''
     }
   },
   props: {
@@ -97,6 +104,7 @@ export default {
         this.gallery = data.gallery;
         this.total = data.gallery.length;
         this.videos = data.videos;
+        this.titleTag = `${wp.name} - ${data.the_title}`
       })
     }
   }

@@ -156,7 +156,7 @@ add_action('wp_enqueue_scripts', function () {
     $ajax_params = [
         'url' => home_url(),
         'routes' => $routes,
-        'auto' => $routes
+        'name' => get_bloginfo('name')
     ];
 
     wp_localize_script('sage/main.js', 'wp', $ajax_params);
