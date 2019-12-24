@@ -1,8 +1,6 @@
-import Home from './Home.vue';
 import Page from './Page.vue';
 import Vue from 'vue';
 
-Vue.component('Home', Home);
 Vue.component('Page', Page);
 
 const vueRoutes = wp['routes'].map(route => {

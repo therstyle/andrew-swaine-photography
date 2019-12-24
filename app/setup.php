@@ -141,6 +141,7 @@ add_action('wp_enqueue_scripts', function () {
     wp_enqueue_script('sage/main.js', asset_path('scripts/main.js'), ['jquery'], null, true);
     $routes = [];
 
+    //Dynamic Vue Router
     $pages = get_posts('post_type=page&nopaging=true');
     foreach($pages as $page) {
       array_push($routes, [
