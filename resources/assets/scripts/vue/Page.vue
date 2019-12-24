@@ -27,6 +27,14 @@
         :total="total"
       >
       </gallery>
+
+      <videos
+        v-if="videos.length > 0"
+        :videos="videos"
+        :theTitle="theTitle"
+      >
+
+      </videos>
     </template>
   </article>
 </template>
@@ -36,6 +44,7 @@ import menuGroup from './layout/menuGroup.vue';
 import gallery from './layout/gallery.vue';
 import theContent from './layout/theContent.vue';
 import featuredImage from './layout/featuredImage.vue';
+import videos from './layout/videos.vue';
 
 export default {
   name: 'page',
@@ -43,7 +52,8 @@ export default {
     menuGroup, 
     gallery,
     theContent,
-    featuredImage
+    featuredImage,
+    videos
   },
   data: function() {
     return {
@@ -52,6 +62,7 @@ export default {
       featured: '',
       menu: [],
       gallery: [],
+      videos: [],
       total: 0,
     }
   },
@@ -84,7 +95,8 @@ export default {
         this.featured = data.featured;
         this.menu = data.menu;
         this.gallery = data.gallery;
-        this.total = data.gallery.length
+        this.total = data.gallery.length;
+        this.videos = data.videos;
       })
     }
   }

@@ -141,6 +141,7 @@ add_action('wp_enqueue_scripts', function () {
     wp_enqueue_script('sage/main.js', asset_path('scripts/main.js'), ['jquery'], null, true);
     $routes = [];
 
+    //Dynamic Vue Router
     $pages = get_posts('post_type=page&nopaging=true');
     foreach($pages as $page) {
       array_push($routes, [
@@ -189,9 +190,11 @@ function get_page_options($data) {
   $menu = get_field('menu', $data['id']);
   $menuItems = wp_get_nav_menu_items($menu);
   $gallery = get_field('gallery', $data['id']);
+  $videos = get_field('videos', $data['id']);
   $featured = has_post_thumbnail($data['id']) ? get_the_post_thumbnail($data['id'], 'full') : null;
   $items = [];
   $gallery_photos = [];
+  $video_items = [];
 
   if ($menu) {
     foreach ($menuItems as $menuItem) {
@@ -210,12 +213,21 @@ function get_page_options($data) {
     }
   }
 
+  if ($videos) {
+      foreach($videos as $video_item) {
+          array_push($video_items, [
+              'video_html' => $video_item['video']
+          ]);
+      }
+  }
+
   $data = [
     'the_title' => $the_title,
     'the_content' => $the_content,
     'featured' => $featured,    
     'menu' => $items,
-    'gallery' => $gallery_photos
+    'gallery' => $gallery_photos,
+    'videos' => $video_items
   ];
 
   return $data;
