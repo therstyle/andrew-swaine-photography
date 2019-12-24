@@ -1,41 +1,39 @@
 <template>
   <article>
-    <template v-if="pageType === '404'">
-      <h1 class="page-title">404 Error</h1>
-    </template>
+    <vue-headful
+      :title="titleTag"
+    />
     
-    <template v-else>
-      <featured-image
-        v-if="featured"
-        :image="featured"
-      ></featured-image>
+    <featured-image
+      v-if="featured"
+      :image="featured"
+    ></featured-image>
 
-      <the-content
-        v-if="theContent"
-        :theContent="theContent"
-      ></the-content>
-      
-      <menu-group 
-        v-if="menu"
-        :menu="menu">
-      </menu-group>
+    <the-content
+      v-if="theContent"
+      :theContent="theContent"
+    ></the-content>
+    
+    <menu-group 
+      v-if="menu"
+      :menu="menu">
+    </menu-group>
 
-      <gallery 
-        v-if="gallery && gallery.length > 0"
-        :gallery="gallery"
-        :theTitle="theTitle"
-        :total="total"
-      >
-      </gallery>
+    <gallery 
+      v-if="gallery && gallery.length > 0"
+      :gallery="gallery"
+      :theTitle="theTitle"
+      :total="total"
+    >
+    </gallery>
 
-      <videos
-        v-if="videos.length > 0"
-        :videos="videos"
-        :theTitle="theTitle"
-      >
+    <videos
+      v-if="videos.length > 0"
+      :videos="videos"
+      :theTitle="theTitle"
+    >
 
-      </videos>
-    </template>
+    </videos>
   </article>
 </template>
 
@@ -45,6 +43,7 @@ import gallery from './layout/gallery.vue';
 import theContent from './layout/theContent.vue';
 import featuredImage from './layout/featuredImage.vue';
 import videos from './layout/videos.vue';
+import vueHeadful from 'vue-headful';
 
 export default {
   name: 'page',
@@ -53,7 +52,8 @@ export default {
     gallery,
     theContent,
     featuredImage,
-    videos
+    videos,
+    vueHeadful
   },
   data: function() {
     return {
@@ -64,6 +64,7 @@ export default {
       gallery: [],
       videos: [],
       total: 0,
+      titleTag: ''
     }
   },
   props: {
@@ -97,6 +98,9 @@ export default {
         this.gallery = data.gallery;
         this.total = data.gallery.length;
         this.videos = data.videos;
+        this.titleTag = `${wp.name} | ${data.the_title}`;
+        this.errorHeadline = data.error_headline;
+        this.errorText = data.error_text;
       })
     }
   }

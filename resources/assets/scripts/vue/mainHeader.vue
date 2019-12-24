@@ -48,8 +48,10 @@ export default {
       )
     },
     menuToggle() {
-      console.log('toggled menu');
-      this.menuActive = !this.menuActive;
+      if (window.matchMedia('(max-width: 768px)').matches) {
+        console.log('toggled menu');
+        this.menuActive = !this.menuActive;
+      }
     }
   }
 }
