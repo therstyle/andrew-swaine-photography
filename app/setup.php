@@ -151,7 +151,11 @@ add_action('wp_enqueue_scripts', function () {
         ]);
     }
 
-    array_push($routes, ['path' => '*', 'component' => 'Page', 'props' => ['pageType' => '404']]);
+    array_push($routes, [
+        'path' => '*', 
+        'component' => 'Page404', 
+        'props' => ['pageType' => '404']
+    ]);
 
     $ajax_params = [
         'url' => home_url(),
@@ -172,13 +176,18 @@ function get_global_options() {
     $menu = get_field('menu', 'option');
     $menuItems = wp_get_nav_menu_items($menu);
     $items = [];
+    $error_headline = get_field('headline', 'option') ? get_field('headline', 'option') : '404 Error';
+    $error_text = get_field('text', 'option') ? get_field('text', 'option') : 'Sorry, this page is not available';
+
     foreach ($menuItems as $menuItem) {
         array_push($items,  array('title' => $menuItem->title, 'slug' => routerLink($menuItem->url)));
     }
 
     $data = [
         'logo' => get_field('logo', 'option'),
-        'menu' => $items
+        'menu' => $items,
+        'error_headline' => $error_headline,
+        'error_text' => $error_text
     ];
 
     return $data;
