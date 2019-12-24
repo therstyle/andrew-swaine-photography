@@ -1,6 +1,6 @@
 <template>
-  <header class="main">
-    <router-link to="/" v-if="logo"><img :src="logo.url" :alt="logo.alt"></router-link>
+  <header class="main" :class="{ 'menu-active': menuActive }">
+    <router-link to="/" v-if="logo" class="main-logo"><img :src="logo.url" :alt="logo.alt"></router-link>
     <button class="menu-toggle" :class="{ 'menu-active': menuActive }" v-on:click="menuToggle">
       <span></span>
       <span></span>
@@ -9,7 +9,7 @@
 
     <nav class="menu main-menu" :class="{ 'menu-active': menuActive }">
       <ul>
-        <li v-for="(menuItem, index) in menu" :key="index">
+        <li v-for="(menuItem, index) in menu" :key="index" v-on:click="menuToggle">
           <router-link :to="menuItem.slug">{{ menuItem.title }}</router-link>
         </li>
       </ul>
