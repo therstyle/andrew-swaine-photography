@@ -7,6 +7,7 @@
     <featured-image
       v-if="featured"
       :image="featured"
+      :loaded="loaded"
     ></featured-image>
 
     <the-content
@@ -64,7 +65,8 @@ export default {
       gallery: [],
       videos: [],
       total: 0,
-      titleTag: ''
+      titleTag: '',
+      loaded: false
     }
   },
   props: {
@@ -101,6 +103,7 @@ export default {
         this.titleTag = `${wp.name} | ${data.the_title}`;
         this.errorHeadline = data.error_headline;
         this.errorText = data.error_text;
+        this.loaded = true;
       })
     }
   }
