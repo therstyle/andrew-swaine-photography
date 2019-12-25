@@ -73,13 +73,13 @@ export default {
   },
   watch: {
     $route () {
-      console.log('route changed');
-      console.log(`page id = ${this.pageId}`);
+      // console.log('route changed');
+      // console.log(`page id = ${this.pageId}`);
       this.loadData(this.restUrl(this.pageId));
     }
   },
   created: function() {
-    console.log(`page id = ${this.pageId}`);
+    // console.log(`page id = ${this.pageId}`);
     this.loadData(this.restUrl(this.pageId));
   },
   methods: {
@@ -90,7 +90,7 @@ export default {
       fetch(url).
       then(response => response.json()).
       then(data => {
-        console.log(data);
+        // console.log(data);
         this.theTitle = data.the_title;
         this.theContent = data.the_content;
         this.featured = data.featured;
