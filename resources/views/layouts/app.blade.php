@@ -7,7 +7,12 @@
   <div class="wrapper" role="document">
     <div id="app">
       <main-header></main-header>
-      <transition name="slide" mode="out-in" appear>
+      <transition
+        appear
+        appear-class="slide-enter"
+        appear-active-class="slide-enter-active"
+        name="slide" 
+        mode="out-in">
         <router-view :key="$route.fullPath"></router-view>
       </transition>
     </div>

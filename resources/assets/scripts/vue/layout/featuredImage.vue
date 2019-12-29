@@ -1,13 +1,12 @@
 <template>
-  <div class="img-featured img-center" v-html="image" :class="{ 'img-loaded': loaded }"></div>
+  <div class="img-featured img-center" v-html="image"></div>
 </template>
 
 <script>
 export default {
   name: 'featured-image',
   props: {
-    image: String,
-    loaded: Boolean
+    image: String
   }
 }
 </script>
