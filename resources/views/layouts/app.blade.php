@@ -9,11 +9,10 @@
       <main-header></main-header>
       <transition
         appear
-        appear-class="slide-enter"
-        appear-active-class="slide-enter-active"
+        v-on:enter="count"
         name="slide" 
         mode="out-in">
-        <router-view :key="$route.fullPath"></router-view>
+        <router-view :key="$route.fullPath" :load="load"></router-view>
       </transition>
     </div>
   </div>

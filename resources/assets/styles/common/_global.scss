@@ -321,9 +321,19 @@ header.main {
   transition: opacity 0.3s ease;
 }
 
-// .first-load {
-//   opacity: 0;
-// }
+.first-load {
+  animation: fade 0.6s ease;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
 
 @keyframes panel-slide {
   0% {

@@ -1,5 +1,5 @@
 <template>
-  <article class="main-content">
+  <article class="main-content" :class="{ 'first-load': load === 1 }">
     <vue-headful
       :title="titleTag"
     />
@@ -69,7 +69,8 @@ export default {
   },
   props: {
     pageId: Number,
-    pageType: String
+    pageType: String,
+    load: Number
   },
   watch: {
     $route () {
