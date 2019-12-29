@@ -7,7 +7,7 @@
       <span></span>
     </button>
 
-    <nav class="menu main-menu" :class="{ 'menu-active': menuActive }">
+    <nav class="menu main-menu" :class="{ 'menu-active': menuActive, 'reverse': reverse }">
       <ul>
         <li v-for="(menuItem, index) in menu" :key="index" v-on:click="menuToggle">
           <router-link :to="menuItem.slug">{{ menuItem.title }}</router-link>
@@ -28,11 +28,14 @@ export default {
         alt: ''
       },
       menu: [],
-      menuActive: false
+      menuActive: false,
+      reverse: false,
+      clicked: false
     }
   },
   created() {
     this.loadData(this.url);
+    window.addEventListener('resize', this.clearAnimations);
   },
   methods: {
     loadData(url) {
@@ -50,7 +53,18 @@ export default {
     menuToggle() {
       if (window.matchMedia('(max-width: 768px)').matches) {
         console.log('toggled menu');
+        if (this.clicked) {
+          this.reverse = !this.reverse;
+        }
         this.menuActive = !this.menuActive;
+        this.clicked = true;
+      }
+    },
+    clearAnimations() {
+      if (window.matchMedia('(min-width: 769px)').matches) {
+        this.menuActive = false;
+        this.clicked = false;
+        this.reverse = false;
       }
     }
   }
