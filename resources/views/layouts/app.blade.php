@@ -7,9 +7,7 @@
   <div class="wrapper" role="document">
     <div id="app">
       <main-header></main-header>
-      <transition name="slide" mode="out-in" appear>
-        <router-view :key="$route.fullPath"></router-view>
-      </transition>
+      <router-view></router-view>
     </div>
   </div>
   @php do_action('get_footer') @endphp

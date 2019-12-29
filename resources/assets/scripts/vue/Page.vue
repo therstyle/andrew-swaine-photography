@@ -1,41 +1,49 @@
 <template>
-  <article>
-    <vue-headful
-      :title="titleTag"
-    />
-    
-    <featured-image
-      v-if="featured"
-      :image="featured"
-      :loaded="loaded"
-    ></featured-image>
+  <transition 
+    name="slide"
+    v-on:enter="setAnimate"
+    v-on:leave="setAnimate"
+    appear
+  >
+    <article :key="$route.fullPath">
+      <vue-headful
+        :title="titleTag"
+      />
+      
+      <featured-image
+        v-if="featured"
+        :image="featured"
+        :loaded="loaded"
+      ></featured-image>
 
-    <the-content
-      v-if="theContent"
-      :theContent="theContent"
-    ></the-content>
-    
-    <menu-group 
-      v-if="menu"
-      :menu="menu">
-    </menu-group>
+      <the-content
+        v-if="theContent"
+        :theContent="theContent"
+      ></the-content>
+      
+      <menu-group 
+        v-if="menu"
+        :menu="menu"
+        :ifAnimate="animate"
+      ></menu-group>
 
-    <gallery 
-      v-if="gallery && gallery.length > 0"
-      :gallery="gallery"
-      :theTitle="theTitle"
-      :total="total"
-    >
-    </gallery>
+      <gallery 
+        v-if="gallery && gallery.length > 0"
+        :gallery="gallery"
+        :theTitle="theTitle"
+        :total="total"
+      >
+      </gallery>
 
-    <videos
-      v-if="videos.length > 0"
-      :videos="videos"
-      :theTitle="theTitle"
-    >
+      <videos
+        v-if="videos.length > 0"
+        :videos="videos"
+        :theTitle="theTitle"
+      >
 
-    </videos>
-  </article>
+      </videos>
+    </article>
+  </transition>
 </template>
 
 <script>
@@ -66,12 +74,14 @@ export default {
       videos: [],
       total: 0,
       titleTag: '',
-      loaded: false
+      loaded: false,
+      animate: false
     }
   },
   props: {
     pageId: Number,
-    pageType: String
+    pageType: String,
+    ifAnimate: Boolean
   },
   watch: {
     $route () {
@@ -85,6 +95,9 @@ export default {
     this.loadData(this.restUrl(this.pageId));
   },
   methods: {
+    setAnimate: function() {
+      this.animate = !this.animate;
+    },
      restUrl: function(pageId) {
       return `${wp.url}/wp-json/as/v1/pages/${pageId}`;
     },
