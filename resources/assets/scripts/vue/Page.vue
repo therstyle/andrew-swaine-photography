@@ -1,5 +1,5 @@
 <template>
-  <article>
+  <article class="main-content" :class="{ 'first-load': load === 1 }">
     <vue-headful
       :title="titleTag"
     />
@@ -7,7 +7,6 @@
     <featured-image
       v-if="featured"
       :image="featured"
-      :loaded="loaded"
     ></featured-image>
 
     <the-content
@@ -66,12 +65,12 @@ export default {
       videos: [],
       total: 0,
       titleTag: '',
-      loaded: false
     }
   },
   props: {
     pageId: Number,
-    pageType: String
+    pageType: String,
+    load: Number
   },
   watch: {
     $route () {
@@ -103,7 +102,6 @@ export default {
         this.titleTag = `${wp.name} | ${data.the_title}`;
         this.errorHeadline = data.error_headline;
         this.errorText = data.error_text;
-        this.loaded = true;
       })
     }
   }

@@ -7,8 +7,12 @@
   <div class="wrapper" role="document">
     <div id="app">
       <main-header></main-header>
-      <transition name="slide" mode="out-in" appear>
-        <router-view :key="$route.fullPath"></router-view>
+      <transition
+        appear
+        v-on:enter="count"
+        name="slide" 
+        mode="out-in">
+        <router-view :key="$route.fullPath" :load="load"></router-view>
       </transition>
     </div>
   </div>

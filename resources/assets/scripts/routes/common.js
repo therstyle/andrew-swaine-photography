@@ -15,6 +15,16 @@ export default {
     new Vue({
       el: '#app',
       router: router,
+      data() {
+        return {
+          load: 0
+        }
+      },
+      methods: {
+        count() {
+          this.load++;
+        }
+      },
       components: {
         MainHeader
       }
