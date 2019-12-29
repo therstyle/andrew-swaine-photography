@@ -1,6 +1,7 @@
 <template>
   <transition 
     name="slide"
+    mode="out-in"
     v-on:enter="setAnimate"
     v-on:leave="setAnimate"
     appear

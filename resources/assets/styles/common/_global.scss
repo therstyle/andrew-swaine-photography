@@ -110,7 +110,7 @@ header.main {
       flex-direction: column;
 
       > li {
-        opacity: 0;
+        // opacity: 0;
         // animation: panel-slide 0.2s ease-out;
         // animation-fill-mode: forwards;
 
@@ -160,13 +160,6 @@ header.main {
           }
         }
       }
-    }
-  }
-
-  &.vertical-menu.animate {
-    > ul > li {
-      animation: panel-slide 0.2s ease-out;
-      animation-fill-mode: forwards;
     }
   }
 }
@@ -418,17 +411,12 @@ header.main {
   }
 }
 
-// .slide-enter-active,
-// .slide-leave-active {
-//   transition: opacity 0.3s ease;
-// }
-
-// .slide-enter,
-// .slide-leave-to {
-//   opacity: 0;
-// }
-
 .slide-enter-active,
 .slide-leave-active {
-  transition: all 2s ease;
+  transition: all 0.3s ease;
+}
+
+.slide-enter,
+.slide-leave-to {
+  opacity: 0;
 }
