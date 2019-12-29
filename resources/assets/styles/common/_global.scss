@@ -310,6 +310,16 @@ header.main {
   }
 }
 
+.slide-enter-active,
+.slide-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.slide-enter,
+.slide-leave-to {
+  opacity: 0;
+}
+
 @keyframes panel-slide {
   0% {
     transform: translateX(200%);
@@ -409,14 +419,12 @@ header.main {
       }
     }
   }
-}
 
-.slide-enter-active,
-.slide-leave-active {
-  transition: opacity 0.3s ease;
-}
+  .gallery-details {
+    flex-direction: column;
 
-.slide-enter,
-.slide-leave-to {
-  opacity: 0;
+    h1.page-title {
+      margin-bottom: 1rem;
+    }
+  }
 }
