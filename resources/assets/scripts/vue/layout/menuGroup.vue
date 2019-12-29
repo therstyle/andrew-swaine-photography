@@ -2,7 +2,7 @@
   <nav class="menu vertical-menu">
     <ul>
       <li v-for="(menuItem, index) in menu" :key="index">
-        <router-link :to="menuItem.slug">{{ menuItem.title }}</router-link>
+        <router-link :to="menuItem.slug" active-class="active">{{ menuItem.title }}</router-link>
       </li>
     </ul>
   </nav>
