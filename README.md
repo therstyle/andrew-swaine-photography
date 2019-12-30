@@ -1,10 +1,6 @@
 # Andrew Swaine Photography
 
-Andrew Swaine Photography is a WordPress theme built with [SageJS](https://github.com/pixelcollective/sageJS) a [Sage starter theme](https://roots.io/sage/) with Vue batteries included.
-
-Created from 9.0.5. No front-end library.
-
-PRs welcome.
+Andrew Swaine Photography is a WordPress theme built with [SageJS](https://github.com/pixelcollective/sageJS) a [Sage starter theme](https://roots.io/sage/) and powered by Vue.js.
 
 ## Features
 
