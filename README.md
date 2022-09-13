@@ -3,7 +3,7 @@
 Andrew Swaine Photography is a WordPress theme built with [SageJS](https://github.com/pixelcollective/sageJS) a [Sage starter theme](https://roots.io/sage/) and powered with a [Vue.js](https://vuejs.org/) front end.
 
 <p align="center">
- <img src="https://chrisrobertsweb.dev/github/andrewswaine.jpg">
+ <img src="https://assets.chrisrobertsweb.dev/github/andrewswaine.webp">
 </p>
 
 ## Requirements
